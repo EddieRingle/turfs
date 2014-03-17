@@ -1,0 +1,13 @@
+#define turfs_VERSION_FULL  "@TURFS_VERSION_FULL@"
+#define turfs_VERSION_MAJOR @TURFS_VERSION_MAJOR@
+#define turfs_VERSION_MINOR @TURFS_VERSION_MINOR@
+#define turfs_VERSION_PATCH @TURFS_VERSION_PATCH@
+#define turfs_VERSION_EXTRA "@TURFS_VERSION_EXTRA@"
+
+const char turfs_version_full[] = turfs_VERSION_FULL;
+
+const int turfs_version_major = turfs_VERSION_MAJOR;
+const int turfs_version_minor = turfs_VERSION_MINOR;
+const int turfs_version_patch = turfs_VERSION_PATCH;
+
+const char turfs_version_extra[] = turfs_VERSION_EXTRA;

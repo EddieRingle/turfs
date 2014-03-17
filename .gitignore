@@ -1,0 +1,12 @@
+# CMake generated
+CMakeLists.txt.user
+
+# Build directory
+build/
+
+# Output directory (default)
+out/
+
+# OS X sucks! :D
+.DS_Store
+

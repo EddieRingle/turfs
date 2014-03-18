@@ -29,12 +29,13 @@ typedef enum {
  */
 typedef enum {
     TURFS_RET_OK = 0,
+    TURFS_RET_INVALID_ARGS,
     TURFS_RET_NOT_INITIALIZED,
     TURFS_RET_NOT_FOUND,
     TURFS_RET_UNKNOWN
 } turfs_ret;
 
-/*
+/**
  * turfs File pointer type
  */
 typedef void* turfs_fp;

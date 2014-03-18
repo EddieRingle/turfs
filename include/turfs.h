@@ -68,6 +68,15 @@ TURFSAPI turfs_init(const char *author, const char *name);
 TURFSAPI turfs_quit(void);
 
 /**
+ * Resolves a turfs_path_type to a virtual path
+ *
+ * @param[in]   type    Path type to resolve virtually
+ * @param[out]  path    Location where path will be stored
+ * @param[out]  len     Location where path length will be stored
+ */
+TURFSAPI turfs_virtual_path(turfs_path_type type, char **path, size_t *len);
+
+/**
  * Opens a file given an absolute virtual path.
  *
  * @param[in]   file    Absolute virtual path to file

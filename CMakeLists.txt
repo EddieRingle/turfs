@@ -106,6 +106,7 @@ message(STATUS "TURFS_TARGET_PLATFORM = ${TURFS_TARGET_PLATFORM}")
 
 set(turfs_SOURCES
     ${CMAKE_CURRENT_BINARY_DIR}/turfs_version.c
+    ${TURFS_SOURCE_DIR}/turfs_common.c
     ${TURFS_SOURCE_DIR}/turfs_strings.c
     ${TURFS_SOURCE_DIR}/internal.h
 )

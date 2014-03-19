@@ -86,6 +86,15 @@ TURFSAPI turfs_virtual_path(turfs_path_type type, char **path, size_t *len);
 TURFSAPI turfs_resolve_path(turfs_path_type type, char **path, size_t *len);
 
 /**
+ * Translates a full virtual path to its real system path
+ *
+ * @param[in]   vpath   Full virtual path
+ * @param[out]  path    Location where real path will be stored
+ * @param[out]  len     Location where real path length will be stored
+ */
+TURFSAPI turfs_silph_scope(const char *vpath, char **path, size_t *len);
+
+/**
  * Opens a file given an absolute virtual path.
  *
  * @param[in]   file    Absolute virtual path to file

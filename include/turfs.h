@@ -38,7 +38,7 @@ typedef enum {
 /**
  * turfs File pointer type
  */
-typedef void* turfs_fp;
+typedef struct turfs_fp * turfs_fp;
 
 #define TURFSAPI turfs_ret
 

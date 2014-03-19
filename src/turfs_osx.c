@@ -104,6 +104,7 @@ TURFSAPI turfs_resolve_path(turfs_path_type type, char **path, size_t *len)
             if (!s__get_userdata_path(path, len)) {
                 return TURFS_RET_UNKNOWN;
             }
+            break;
         default:
             return TURFS_RET_INVALID_ARGS;
     }

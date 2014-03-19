@@ -118,6 +118,14 @@ if(TURFS_TARGET_PLATFORM STREQUAL TURFS_TARGET_PLATFORM_OSX)
     )
 endif()
 
+# stdio platforms
+if(NOT TURFS_TARGET_PLATFORM STREQUAL TURFS_TARGET_PLATFORM_ANDROID)
+    set(turfs_SOURCES
+        ${turfs_SOURCES}
+        ${TURFS_SOURCE_DIR}/turfs_file_stdio.c
+    )
+endif()
+
 set(turfs_INCLUDES
     ${TURFS_INCLUDE_DIR}/turfs.h
     ${TURFS_INCLUDE_DIR}/turfs_version.h

@@ -135,6 +135,8 @@ include_directories(SYSTEM ${TURFS_INCLUDE_DIR})
 
 add_library(turfs STATIC ${turfs_SOURCES} ${turfs_INCLUDES})
 
+add_subdirectory(examples)
+
 install(TARGETS turfs
     ARCHIVE DESTINATION lib
 )

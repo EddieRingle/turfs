@@ -121,6 +121,11 @@ elseif(TURFS_TARGET_PLATFORM STREQUAL TURFS_TARGET_PLATFORM_UNIX)
         ${turfs_SOURCES}
         ${TURFS_SOURCE_DIR}/turfs_unix.c
     )
+elseif(TURFS_TARGET_PLATFORM STREQUAL TURFS_TARGET_PLATFORM_WINDOWS)
+    set(turfs_SOURCES
+        ${turfs_SOURCES}
+        ${TURFS_SOURCE_DIR}/turfs_windows.c
+    )
 endif()
 
 # stdio platforms

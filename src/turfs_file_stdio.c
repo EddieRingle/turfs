@@ -52,7 +52,7 @@ TURFSAPI turfs_file_seek(turfs_fp fp, off_t offset, int whence)
     if (fp == NULL || fp->fp == NULL) {
         return TURFS_RET_INVALID_ARGS;
     }
-    if (fseeko(fp->fp, offset, whence)) {
+    if (fseek(fp->fp, offset, whence)) {
         return TURFS_RET_UNKNOWN;
     }
     return TURFS_RET_OK;

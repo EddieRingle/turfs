@@ -110,14 +110,47 @@ TURFSAPI turfs_silph_scope(const char *vpath, char **path, size_t *len);
  */
 TURFSAPI turfs_file_open(const char *file, const char *mode, turfs_fp *fp);
 
+/**
+ * Reads bytes from an opened file
+ *
+ * @param[in]   fp          File to read from
+ * @param[in]   buffer      Buffer to read to
+ * @param[in]   count       Number of bytes to read
+ * @param[out]  bytes_read  Number of bytes read
+ */
 TURFSAPI turfs_file_read(turfs_fp fp, char *buffer, size_t count, size_t *bytes_read);
 
+/**
+ * Seeks to a position in a file. Equivalent to fseek()
+ *
+ * @param[in]   fp
+ * @param[in]   offset
+ * @param[in]   whence
+ */
 TURFSAPI turfs_file_seek(turfs_fp fp, off_t offset, int whence);
 
+/**
+ * Fetches the length of an open file.
+ *
+ * @param[in]   fp  File to fetch length of
+ * @param[out]  len Location to store length
+ */
 TURFSAPI turfs_file_length(turfs_fp fp, size_t *len);
 
+/**
+ * Fetches the current position within a file.
+ * Equivalent to ftell().
+ *
+ * @param[in]   fp  File to fetch position of
+ * @param[out]  pos Location to store position
+ */
 TURFSAPI turfs_file_tell(turfs_fp fp, long int *pos);
 
+/**
+ * Close an open file
+ *
+ * @param[in]   fp  Pointer to file to be closed
+ */
 TURFSAPI turfs_file_close(turfs_fp *fp);
 
 #endif /* __included_turfs_h */

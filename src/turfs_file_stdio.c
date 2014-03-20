@@ -15,7 +15,7 @@ TURFSAPI turfs_file_open(const char *file, const char *mode, turfs_fp *fp)
     if (file == NULL || mode == NULL || fp == NULL) {
         return TURFS_RET_INVALID_ARGS;
     }
-    if ((err = turfs_silph_scope(file, &rpath, &rpath_len)) != TURFS_RET_OK) {
+    if ((err = turfs_silph_scope(file, &rpath, &rpath_len, NULL)) != TURFS_RET_OK) {
         return err;
     }
     *fp = malloc(sizeof(struct turfs_fp));
@@ -78,8 +78,9 @@ TURFSAPI turfs_file_tell(turfs_fp fp, long int *pos)
     }
     if (pos != NULL) {
         *pos = ftell(fp->fp);
+        return (*pos > -1L) ? TURFS_RET_OK : TURFS_RET_UNKNOWN;
     }
-    return (*pos > -1L) ? TURFS_RET_OK : TURFS_RET_UNKNOWN;
+    return TURFS_RET_OK;
 }
 
 TURFSAPI turfs_file_close(turfs_fp *fp)

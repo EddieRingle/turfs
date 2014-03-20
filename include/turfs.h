@@ -49,12 +49,15 @@ typedef struct turfs_fp * turfs_fp;
  * This must be called prior to doing anything else with
  * this library.
  *
- * @param[in]   author  Author of the application, no special characters
- * @param[in]   name    Name of the application, no special characters
+ * @param[in]   author      Author of the application, no special characters
+ * @param[in]   name        Name of the application, no special characters
+ * @param[in]   aactivity   If on Android, pass the ANativeActivity provided
+ *                          by android_main()'s struct android_app parameter;
+ *                          Otherwise, pass NULL.
  *
  * @returns TURFS_RET_OK if initialization succeeded.
  */
-TURFSAPI turfs_init(const char *author, const char *name);
+TURFSAPI turfs_init(const char *author, const char *name, void *aactivity);
 
 /**
  * De-initialize turfs
@@ -92,8 +95,9 @@ TURFSAPI turfs_resolve_path(turfs_path_type type, char **path, size_t *len);
  * @param[in]   vpath   Full virtual path
  * @param[out]  path    Location where real path will be stored
  * @param[out]  len     Location where real path length will be stored
+ * @param[out]  type    Location where virtual path type will be stored
  */
-TURFSAPI turfs_silph_scope(const char *vpath, char **path, size_t *len);
+TURFSAPI turfs_silph_scope(const char *vpath, char **path, size_t *len, turfs_path_type *type);
 
 /**
  * Opens a file given an absolute virtual path.

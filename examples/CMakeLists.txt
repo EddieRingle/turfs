@@ -1,2 +1,6 @@
-add_subdirectory(test1)
-add_subdirectory(read_test)
+if(TURFS_TARGET_PLATFORM STREQUAL TURFS_TARGET_PLATFORM_ANDROID)
+    add_subdirectory(android_read_test)
+else()
+    add_subdirectory(test1)
+    add_subdirectory(read_test)
+endif()

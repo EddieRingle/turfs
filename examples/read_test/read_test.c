@@ -8,7 +8,7 @@ int main(int argc, char **argv)
     char buf[2048] = {0};
     int ret;
     turfs_fp fp;
-    turfs_init("turfs", "read_test");
+    turfs_init("turfs", "read_test", NULL);
     ret = turfs_file_open("/assets/read_this.txt", "rb", &fp);
     if (ret) {
         fprintf(stderr, "read_test: File open failed.\n");

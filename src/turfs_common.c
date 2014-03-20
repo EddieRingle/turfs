@@ -36,7 +36,7 @@ TURFSAPI turfs_virtual_path(turfs_path_type type, char **path, size_t *len)
     return TURFS_RET_OK;
 }
 
-TURFSAPI turfs_silph_scope(const char *vpath, char **path, size_t *len)
+TURFSAPI turfs_silph_scope(const char *vpath, char **path, size_t *len, turfs_path_type *type)
 {
     char temp_path[2048];
     char *asset_vpath = NULL, *userdata_vpath = NULL;
@@ -60,6 +60,9 @@ TURFSAPI turfs_silph_scope(const char *vpath, char **path, size_t *len)
                 if (len != NULL) {
                     *len = strlen(temp_path);
                 }
+                if (type != NULL) {
+                    *type = TURFS_PATH_ASSETS;
+                }
                 return TURFS_RET_OK;
             }
         }
@@ -76,6 +79,9 @@ TURFSAPI turfs_silph_scope(const char *vpath, char **path, size_t *len)
                 }
                 if (len != NULL) {
                     *len = strlen(temp_path);
+                }
+                if (type != NULL) {
+                    *type = TURFS_PATH_USERDATA;
                 }
                 return TURFS_RET_OK;
             }

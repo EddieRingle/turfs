@@ -17,7 +17,7 @@ static char *s_userdata_path = NULL;
 
 int g_initialized = 0;
 
-TURFSAPI turfs_init(const char *author, const char *name)
+TURFSAPI turfs_init(const char *author, const char *name, void *aactivity)
 {
     if (author == NULL || name == NULL) {
         return TURFS_RET_INVALID_ARGS;

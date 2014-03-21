@@ -17,6 +17,3 @@ install(TARGETS android_read_test
     BUNDLE DESTINATION bin
     LIBRARY DESTINATION bin/android_read_test
 )
-
-
-

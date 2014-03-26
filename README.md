@@ -8,7 +8,13 @@ turfs is a virtual file system. (I guess that's what you'd call it, anyway.) At 
 
 Simple enough. Like any other CMake project, run the `cmake` command with your
 favorite arguments. Then, depending on the build system that was generated,
-build turfs from there.
+build turfs from there. Like any project using CMake, it'd probably be best
+to do an out-of-source build, like so.
+
+1. `mkdir -p build/make`
+2. `cd build/make`
+3. `cmake ../..`
+4. `make install`
 
 ##### ...for Android #####
 

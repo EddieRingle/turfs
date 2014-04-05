@@ -34,7 +34,7 @@ TURFSAPI turfs_file_open(const char *file, const char *mode, turfs_fp *fp)
     return TURFS_RET_OK;
 }
 
-TURFSAPI turfs_file_read(turfs_fp fp, char *buffer, size_t count, size_t *bytes_read)
+TURFSAPI turfs_file_read(turfs_fp fp, void *buffer, size_t count, size_t *bytes_read)
 {
     size_t read_bytes = 0;
     if (fp == NULL || fp->fp == NULL || buffer == NULL) {

@@ -122,7 +122,7 @@ TURFSAPI turfs_file_open(const char *file, const char *mode, turfs_fp *fp);
  * @param[in]   count       Number of bytes to read
  * @param[out]  bytes_read  Number of bytes read
  */
-TURFSAPI turfs_file_read(turfs_fp fp, char *buffer, size_t count, size_t *bytes_read);
+TURFSAPI turfs_file_read(turfs_fp fp, void *buffer, size_t count, size_t *bytes_read);
 
 /**
  * Seeks to a position in a file. Equivalent to fseek()

@@ -3,6 +3,12 @@ project(turfs C)
 cmake_minimum_required(VERSION 2.8.12.2)
 
 #
+# Options
+#
+
+option(TURFS_BUILD_EXAMPLES "Build turfs examples" ON)
+
+#
 # Set up some variables
 #
 
@@ -151,7 +157,9 @@ include_directories(SYSTEM ${TURFS_INCLUDE_DIR})
 
 add_library(turfs STATIC ${turfs_SOURCES} ${turfs_INCLUDES})
 
-add_subdirectory(examples)
+if(TURFS_BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
 
 install(TARGETS turfs
     ARCHIVE DESTINATION lib

@@ -103,6 +103,7 @@ TURFSAPI turfs_file_seek(turfs_fp fp, off_t offset, int whence)
 
 TURFSAPI turfs_file_length(turfs_fp fp, size_t *len)
 {
+    long cur;
     if (fp == NULL || (fp->asset == NULL && fp->fp == NULL)) {
         return TURFS_RET_INVALID_ARGS;
     }
@@ -111,11 +112,12 @@ TURFSAPI turfs_file_length(turfs_fp fp, size_t *len)
             *len = AAsset_getLength(fp->asset);
         }
     } else if (fp->fp != NULL) {
+        cur = ftell(fp->fp);
         fseek(fp->fp, 0, SEEK_END);
         if (len != NULL) {
             *len = (size_t) ftell(fp->fp);
         }
-        rewind(fp->fp);
+        fseek(fp->fp, cur, SEEK_SET);
     }
     return TURFS_RET_OK;
 }

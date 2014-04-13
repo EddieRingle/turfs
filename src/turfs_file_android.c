@@ -15,6 +15,7 @@ extern ANativeActivity *g_nativeActivity;
 struct turfs_fp {
     AAsset *asset;
     FILE *fp;
+    int eof;
 };
 
 TURFSAPI turfs_file_open(const char *file, const char *mode, turfs_fp *fp)
@@ -61,6 +62,7 @@ TURFSAPI turfs_file_open(const char *file, const char *mode, turfs_fp *fp)
             break;
     }
     free(rpath);
+    (*fp)->eof = 0;
     return TURFS_RET_OK;
 }
 
@@ -75,8 +77,10 @@ TURFSAPI turfs_file_read(turfs_fp fp, void *buffer, size_t count, size_t *bytes_
     }
     if (fp->asset != NULL) {
         read_bytes = AAsset_read(fp->asset, buffer, count);
+        fp->eof = read_bytes == 0;
     } else if (fp->fp != NULL) {
         read_bytes = fread(buffer, sizeof(char), count, fp->fp);
+        fp->eof = feof(fp->fp);
     }
     if (bytes_read != NULL) {
         *bytes_read = read_bytes;
@@ -93,10 +97,12 @@ TURFSAPI turfs_file_seek(turfs_fp fp, off_t offset, int whence)
         if (AAsset_seek(fp->asset, offset, whence) < 0) {
             return TURFS_RET_UNKNOWN;
         }
+        fp->eof = 0;
     } else if (fp->fp != NULL) {
         if (fseek(fp->fp, offset, whence)) {
             return TURFS_RET_UNKNOWN;
         }
+        fp->eof = feof(fp->fp);
     }
     return TURFS_RET_OK;
 }
@@ -141,6 +147,14 @@ TURFSAPI turfs_file_tell(turfs_fp fp, long int *pos)
         return TURFS_RET_OK;
     }
     return TURFS_RET_UNKNOWN;
+}
+
+TURFSAPI turfs_file_eof(turfs_fp fp)
+{
+    if (fp->eof) {
+        return TURFS_RET_END_OF_FILE;
+    }
+    return TURFS_RET_OK;
 }
 
 TURFSAPI turfs_file_close(turfs_fp *fp)

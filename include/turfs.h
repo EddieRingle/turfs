@@ -29,6 +29,7 @@ typedef enum {
  */
 typedef enum {
     TURFS_RET_OK = 0,
+    TURFS_RET_END_OF_FILE,
     TURFS_RET_INVALID_ARGS,
     TURFS_RET_MEMORY_ERROR,
     TURFS_RET_NOT_INITIALIZED,
@@ -149,6 +150,14 @@ TURFSAPI turfs_file_length(turfs_fp fp, size_t *len);
  * @param[out]  pos Location to store position
  */
 TURFSAPI turfs_file_tell(turfs_fp fp, long int *pos);
+
+/**
+ * Test for end-of-file
+ *
+ * @returns TURFS_RET_END_OF_FILE if EOF was reached,
+ * or TURFS_RET_OK otherwise.
+ */
+TURFSAPI turfs_file_eof(turfs_fp fp);
 
 /**
  * Close an open file

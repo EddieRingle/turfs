@@ -5,6 +5,7 @@
 
 struct turfs_fp {
     FILE *fp;
+    int eof;
 };
 
 TURFSAPI turfs_file_open(const char *file, const char *mode, turfs_fp *fp)
@@ -31,6 +32,7 @@ TURFSAPI turfs_file_open(const char *file, const char *mode, turfs_fp *fp)
         return TURFS_RET_NOT_FOUND;
     }
     free(rpath);
+    (*fp)->eof = 0;
     return TURFS_RET_OK;
 }
 
@@ -41,6 +43,7 @@ TURFSAPI turfs_file_read(turfs_fp fp, void *buffer, size_t count, size_t *bytes_
         return TURFS_RET_INVALID_ARGS;
     }
     read_bytes = fread(buffer, sizeof(char), count, fp->fp);
+    fp->eof = feof(fp->fp);
     if (bytes_read != NULL) {
         *bytes_read = read_bytes;
     }
@@ -55,6 +58,7 @@ TURFSAPI turfs_file_seek(turfs_fp fp, off_t offset, int whence)
     if (fseek(fp->fp, offset, whence)) {
         return TURFS_RET_UNKNOWN;
     }
+    fp->eof = feof(fp->fp);
     return TURFS_RET_OK;
 }
 
@@ -81,6 +85,14 @@ TURFSAPI turfs_file_tell(turfs_fp fp, long int *pos)
     if (pos != NULL) {
         *pos = ftell(fp->fp);
         return (*pos > -1L) ? TURFS_RET_OK : TURFS_RET_UNKNOWN;
+    }
+    return TURFS_RET_OK;
+}
+
+TURFSAPI turfs_file_eof(turfs_fp fp)
+{
+    if (fp->eof) {
+        return TURFS_RET_END_OF_FILE;
     }
     return TURFS_RET_OK;
 }

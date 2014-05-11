@@ -51,7 +51,14 @@ list(APPEND CMAKE_MODULE_PATH "${TURFS_SCRIPTS_DIR}/cmake/modules")
 
 include(GetGitRevisionDescription)
 include(GroupByFolder)
+include(HostMacros)
 include(TargetArch)
+
+#
+# Host package detection
+#
+
+find_host_package(Git)
 
 #
 # Target Arch/OS Detection
